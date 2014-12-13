@@ -8,7 +8,7 @@ var Walker = require('node-source-walk');
  */
 module.exports = function(src) {
   var walker = new Walker({
-    esprimaHarmony: true
+    ecmaVersion: 6
   });
 
   var dependencies = [];
