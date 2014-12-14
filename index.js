@@ -3,7 +3,7 @@ var Walker = require('node-source-walk');
 /**
  * Extracts the dependencies of the supplied es6 module
  *
- * @param  {String} src
+ * @param  {String|Object} src - File's content or AST
  * @return {String[]}
  */
 module.exports = function(src) {
