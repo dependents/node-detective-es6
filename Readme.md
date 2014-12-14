@@ -11,5 +11,11 @@ var detective = require('detective-es6');
 
 var mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 
+// Pass in a file's content or an AST
 var dependencies = detective(mySourceCode);
+
 ```
+
+#### License
+
+MIT
