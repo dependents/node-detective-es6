@@ -13,6 +13,7 @@
   "keywords": [
     "detective",
     "es6",
+    "es2015",
     "dependencies",
     "module",
     "ast"
@@ -24,7 +25,7 @@
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-es6",
   "dependencies": {
-    "node-source-walk": "~1.4.0"
+    "node-source-walk": "~2.0.0"
   },
   "devDependencies": {
     "mocha": "~2.0.1"
