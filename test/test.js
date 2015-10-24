@@ -45,4 +45,10 @@ describe('detective-es6', function() {
     var deps = detective('var foo = require("foo");');
     assert(!deps.length);
   });
+
+  it('does not throw with jsx in a module', function() {
+    assert.doesNotThrow(function() {
+      detective('var foo = require("foo"); var templ = <jsx />;');
+    });
+  });
 });
