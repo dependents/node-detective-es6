@@ -4,7 +4,7 @@
   "description": "Get the dependencies of an es6 module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "jscs -p google index.js test && mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
     "es2015",
     "dependencies",
     "module",
-    "ast"
+    "ast",
+    "import"
   ],
   "author": "Joel Kemp <joel@mrjoelkemp.com>",
   "license": "MIT",
@@ -25,9 +26,10 @@
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-es6",
   "dependencies": {
-    "node-source-walk": "~2.0.0"
+    "node-source-walk": "^2.1.0"
   },
   "devDependencies": {
+    "jscs": "~2.4.0",
     "mocha": "~2.0.1"
   }
 }
