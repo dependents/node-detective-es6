@@ -4,7 +4,7 @@
   "description": "Get the dependencies of an es6 module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "jscs -p google index.js test && mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "node-source-walk": "^2.1.0"
   },
   "devDependencies": {
+    "jscs": "~2.4.0",
     "mocha": "~2.0.1"
   }
 }

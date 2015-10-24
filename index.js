@@ -11,11 +11,13 @@ module.exports = function(src) {
 
   var dependencies = [];
 
-  if (! src) throw new Error('src not given');
+  if (!src) { throw new Error('src not given'); }
 
   walker.walk(src, function(node) {
     // If it's not an import, skip it
-    if (node.type !== 'ImportDeclaration' || !node.source || !node.source.value) {
+    if (node.type !== 'ImportDeclaration' ||
+        !node.source ||
+        !node.source.value) {
       return;
     }
 
