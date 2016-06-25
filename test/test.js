@@ -33,6 +33,18 @@ describe('detective-es6', function() {
     assert(deps[0] === 'mylib');
   });
 
+  it('retrieves the re-export dependencies of es6 modules', function() {
+    var deps = detective('export {foo, bar} from "mylib";');
+    assert(deps.length === 1);
+    assert(deps[0] === 'mylib');
+  });
+
+  it('retrieves the re-export * dependencies of es6 modules', function() {
+    var deps = detective('export * from "mylib";');
+    assert(deps.length === 1);
+    assert(deps[0] === 'mylib');
+  });
+
   it('handles multiple imports', function() {
     var deps = detective('import {foo, bar} from "mylib";\nimport "mylib2"');
 

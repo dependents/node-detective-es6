@@ -15,13 +15,25 @@ module.exports = function(src) {
 
   walker.walk(src, function(node) {
     // If it's not an import, skip it
-    if (node.type !== 'ImportDeclaration' ||
-        !node.source ||
-        !node.source.value) {
-      return;
+    switch (node.type) {
+      case 'ImportDeclaration':
+        if (node.source && node.source.value) {
+          dependencies.push(node.source.value);
+        }
+        break;
+      case 'ExportNamedDeclaration':
+        if (node.source && node.source.value) {
+          dependencies.push(node.source.value);
+        }
+        break;
+      case 'ExportAllDeclaration':
+        if (node.source && node.source.value) {
+          dependencies.push(node.source.value);
+        }
+        break;
+      default:
+        return;
     }
-
-    dependencies.push(node.source.value);
   });
 
   return dependencies;
