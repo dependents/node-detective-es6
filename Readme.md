@@ -14,6 +14,17 @@ var mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 // Pass in a file's content or an AST
 var dependencies = detective(mySourceCode);
 
+// input:
+import Abc, * as BBBBBB from "mylib";
+
+// putput
+[{
+  "name": "mylib",
+  "default": "Abc",
+  "star": true,
+  "alias": "BBBBBB"
+}]
+
 ```
 
 * Supports JSX, Flow, and any other features that [node-source-walk](https://github.com/mrjoelkemp/node-source-walk) supports.

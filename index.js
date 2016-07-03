@@ -16,9 +16,34 @@ module.exports = function(src) {
   walker.walk(src, function(node) {
     switch (node.type) {
       case 'ImportDeclaration':
+        var dep = {};
         if (node.source && node.source.value) {
-          dependencies.push(node.source.value);
+          var depName = node.source.value;
+          dep.name = depName;
         }
+        for (var i = 0; i < node.specifiers.length; i++) {
+          var specifiersNode = node.specifiers[i];
+          var specifiersType = specifiersNode.type;
+          switch (specifiersType) {
+            case 'ImportDefaultSpecifier':
+              dep.default = specifiersNode.local.name;
+              break;
+            case 'ImportSpecifier':
+              dep.members = dep.members || [];
+              dep.members.push({
+                name: specifiersNode.imported.name,
+                alias: specifiersNode.local.name,
+              });
+              break;
+            case 'ImportNamespaceSpecifier':
+              dep.star = true;
+              dep.alias = specifiersNode.local.name;
+              break;
+            default:
+              return;
+          }
+        }
+        dependencies.push(dep);
         break;
       case 'ExportNamedDeclaration':
       case 'ExportAllDeclaration':
@@ -30,6 +55,6 @@ module.exports = function(src) {
         return;
     }
   });
-
+  console.log(JSON.stringify(dependencies, null, 2));
   return dependencies;
 };
