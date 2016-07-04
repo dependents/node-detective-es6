@@ -17,7 +17,7 @@ var dependencies = detective(mySourceCode);
 // input:
 import Abc, * as BBBBBB from "mylib";
 
-// putput
+// output
 [{
   "name": "mylib",
   "default": "Abc",
