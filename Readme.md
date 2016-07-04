@@ -1,13 +1,13 @@
-### detective-es6 [![npm](http://img.shields.io/npm/v/detective-es6.svg)](https://npmjs.org/package/detective-es6) [![npm](http://img.shields.io/npm/dm/detective-es6.svg)](https://npmjs.org/package/detective-es6)
+### detective-es6 [![npm](http://img.shields.io/npm/v/detective-module.svg)](https://npmjs.org/package/detective-module) [![npm](http://img.shields.io/npm/dm/detective-module.svg)](https://npmjs.org/package/detective-module)
 
-> Get the dependencies of an ES6 module
+> Get the dependencies specifier of an ES6 module
 
-`npm install detective-es6`
+`npm install detective-module`
 
 ### Usage
 
 ```js
-var detective = require('detective-es6');
+var detective = require('detective-module');
 
 var mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 
