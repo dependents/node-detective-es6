@@ -46,9 +46,33 @@ module.exports = function(src) {
         dependencies.push(dep);
         break;
       case 'ExportNamedDeclaration':
+        var dep = {};
+        if (node.source && node.source.value) {
+          var depName = node.source.value;
+          dep.name = depName;
+        }
+        for (var i = 0; i < node.specifiers.length; i++) {
+          var specifiersNode = node.specifiers[i];
+          var specifiersType = specifiersNode.type;
+          switch (specifiersType) {
+            case 'ExportSpecifier':
+              dep.members = dep.members || [];
+              dep.members.push({
+                name: specifiersNode.local.name,
+                alias: specifiersNode.exported.name,
+              });
+              break;
+            default:
+              return;
+          }
+        }
+        dependencies.push(dep);
+        break;
       case 'ExportAllDeclaration':
         if (node.source && node.source.value) {
-          dependencies.push(node.source.value);
+          dependencies.push({
+            name: node.source.value
+          });
         }
         break;
       default:
