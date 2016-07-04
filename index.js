@@ -55,6 +55,6 @@ module.exports = function(src) {
         return;
     }
   });
-  console.log(JSON.stringify(dependencies, null, 2));
+
   return dependencies;
 };
