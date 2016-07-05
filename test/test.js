@@ -2,30 +2,30 @@ var assert = require('assert');
 var detective = require('../');
 
 describe('detective-es6', function() {
-  // var ast = {
-  //   type: 'Program',
-  //   body: [{
-  //     type: 'VariableDeclaration',
-  //     declarations: [{
-  //       type: 'VariableDeclarator',
-  //       id: {
-  //           type: 'Identifier',
-  //           name: 'x'
-  //       },
-  //       init: {
-  //           type: 'Literal',
-  //           value: 4,
-  //           raw: '4'
-  //       }
-  //     }],
-  //     kind: 'let'
-  //   }]
-  // };
+  var ast = {
+    type: 'Program',
+    body: [{
+      type: 'VariableDeclaration',
+      declarations: [{
+        type: 'VariableDeclarator',
+        id: {
+            type: 'Identifier',
+            name: 'x'
+        },
+        init: {
+            type: 'Literal',
+            value: 4,
+            raw: '4'
+        }
+      }],
+      kind: 'let'
+    }]
+  };
 
-  // it('accepts an ast', function() {
-  //   var deps = detective(ast);
-  //   assert(!deps.length);
-  // });
+  it('accepts an ast', function() {
+    var deps = detective(ast);
+    assert(!deps.length);
+  });
 
   it('retrieves the dependencies of es6 modules', function() {
     var deps = detective('import Abc, * as All from "mylib";');
@@ -58,7 +58,7 @@ describe('detective-es6', function() {
 
   it('retrieves the re-export * dependencies of es6 modules', function() {
     var deps = detective('export * from "mylib";');
-    console.log(deps)
+
     assert(deps.length === 1);
     assert(deps[0].name === 'mylib');
   });
@@ -91,13 +91,13 @@ describe('detective-es6', function() {
 
   it('does not throw with jsx in a module', function() {
     assert.doesNotThrow(function() {
-      detective('import foo from \'foo\'; var templ = <jsx />;');
+      detective('import foo from "foo"; var templ = <jsx />;');
     });
   });
 
   it('does not throw on an async ES7 function', function() {
     assert.doesNotThrow(function() {
-      detective('import foo from \'foo\'; export default async function foo() {}');
+      detective('import foo from "foo"; export default async function foo() {}');
     });
   });
 });
