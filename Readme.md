@@ -27,6 +27,26 @@ import Abc, * as BBBBBB from "mylib";
 
 ```
 
+### Example
+
+```js
+// input:
+import {foo as Foo, bar} from "mylib";
+
+// output
+[{
+  "name": "mylib",
+  "members": [{
+    "name": "foo",
+    "alias": "Foo"
+  }, {
+    "name": "bar",
+    "alias": "bar"
+  }]
+}]
+
+```
+
 * Supports JSX, Flow, and any other features that [node-source-walk](https://github.com/mrjoelkemp/node-source-walk) supports.
 
 #### License
