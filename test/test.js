@@ -65,6 +65,17 @@ describe('detective-es6', function() {
     assert(!deps.length);
   });
 
+  it('returns an empty list for empty files', function() {
+    var deps = detective('');
+    assert.equal(deps.length, 0);
+  });
+
+  it('throws when content is not provided', function() {
+    assert.throws(function() {
+      detective();
+    }, Error, 'src not given');
+  });
+
   it('does not throw with jsx in a module', function() {
     assert.doesNotThrow(function() {
       detective('import foo from \'foo\'; var templ = <jsx />;');

@@ -11,7 +11,11 @@ module.exports = function(src) {
 
   var dependencies = [];
 
-  if (!src) { throw new Error('src not given'); }
+  if (typeof src === 'undefined') { throw new Error('src not given'); }
+
+  if (src === '') {
+    return dependencies;
+  }
 
   walker.walk(src, function(node) {
     switch (node.type) {
