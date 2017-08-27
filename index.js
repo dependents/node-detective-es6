@@ -30,6 +30,10 @@ module.exports = function(src) {
           dependencies.push(node.source.value);
         }
         break;
+      case 'CallExpression':
+        if (node.callee.type === 'Import' && node.arguments.length) {
+          dependencies.push(node.arguments[0].value);
+        }
       default:
         return;
     }
