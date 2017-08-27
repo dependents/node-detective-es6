@@ -60,6 +60,13 @@ describe('detective-es6', function() {
     assert(deps[0] === 'foo');
   });
 
+  it('handles dynamic imports', function() {
+    var deps = detective('import("foo").then(foo => foo());');
+
+    assert(deps.length === 1);
+    assert(deps[0] === 'foo');
+  })
+
   it('returns an empty list for non-es6 modules', function() {
     var deps = detective('var foo = require("foo");');
     assert(!deps.length);
