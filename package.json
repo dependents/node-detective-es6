@@ -25,6 +25,9 @@
     "url": "https://github.com/mrjoelkemp/node-detective-es6/issues"
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-es6",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "dependencies": {
     "node-source-walk": "^3.3.0"
   },
