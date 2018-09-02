@@ -1,3 +1,5 @@
+'use strict';
+
 var Walker = require('node-source-walk');
 
 /**
@@ -7,9 +9,9 @@ var Walker = require('node-source-walk');
  * @return {String[]}
  */
 module.exports = function(src) {
-  var walker = new Walker();
+  const walker = new Walker();
 
-  var dependencies = [];
+  const dependencies = [];
 
   if (typeof src === 'undefined') { throw new Error('src not given'); }
 
