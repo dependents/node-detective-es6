@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "jscs": "~2.4.0",
-    "mocha": "~2.0.1"
+    "mocha": "^5.2.0"
   }
 }
