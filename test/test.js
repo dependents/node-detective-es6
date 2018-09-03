@@ -1,8 +1,10 @@
-var assert = require('assert');
-var detective = require('../');
+'use strict';
+
+const assert = require('assert');
+const detective = require('../');
 
 describe('detective-es6', function() {
-  var ast = {
+  const ast = {
     type: 'Program',
     body: [{
       type: 'VariableDeclaration',
@@ -23,30 +25,30 @@ describe('detective-es6', function() {
   };
 
   it('accepts an ast', function() {
-    var deps = detective(ast);
+    const deps = detective(ast);
     assert(!deps.length);
   });
 
   it('retrieves the dependencies of es6 modules', function() {
-    var deps = detective('import {foo, bar} from "mylib";');
+    const deps = detective('import {foo, bar} from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
   it('retrieves the re-export dependencies of es6 modules', function() {
-    var deps = detective('export {foo, bar} from "mylib";');
+    const deps = detective('export {foo, bar} from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
   it('retrieves the re-export * dependencies of es6 modules', function() {
-    var deps = detective('export * from "mylib";');
+    const deps = detective('export * from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
   it('handles multiple imports', function() {
-    var deps = detective('import {foo, bar} from "mylib";\nimport "mylib2"');
+    const deps = detective('import {foo, bar} from "mylib";\nimport "mylib2"');
 
     assert(deps.length === 2);
     assert(deps[0] === 'mylib');
@@ -54,26 +56,26 @@ describe('detective-es6', function() {
   });
 
   it('handles default imports', function() {
-    var deps = detective('import foo from "foo";');
+    const deps = detective('import foo from "foo";');
 
     assert(deps.length === 1);
     assert(deps[0] === 'foo');
   });
 
   it('handles dynamic imports', function() {
-    var deps = detective('import("foo").then(foo => foo());');
+    const deps = detective('import("foo").then(foo => foo());');
 
     assert(deps.length === 1);
     assert(deps[0] === 'foo');
   })
 
   it('returns an empty list for non-es6 modules', function() {
-    var deps = detective('var foo = require("foo");');
+    const deps = detective('var foo = require("foo");');
     assert(!deps.length);
   });
 
   it('returns an empty list for empty files', function() {
-    var deps = detective('');
+    const deps = detective('');
     assert.equal(deps.length, 0);
   });
 
