@@ -6,9 +6,10 @@ var Walker = require('node-source-walk');
  * Extracts the dependencies of the supplied es6 module
  *
  * @param  {String|Object} src - File's content or AST
+ * @param  {Object} options - optional extra settings
  * @return {String[]}
  */
-module.exports = function(src) {
+module.exports = function(src, options) {
   const walker = new Walker();
 
   const dependencies = [];
@@ -22,6 +23,9 @@ module.exports = function(src) {
   walker.walk(src, function(node) {
     switch (node.type) {
       case 'ImportDeclaration':
+        if (options && options.skipTypeImports && node.importKind == 'type') {
+          break;
+        }
         if (node.source && node.source.value) {
           dependencies.push(node.source.value);
         }
