@@ -96,4 +96,12 @@ describe('detective-es6', function() {
       detective('import foo from \'foo\'; export default async function foo() {}');
     });
   });
+
+  it('respects settings for type imports', function() {
+    const source = 'import type {foo} from "mylib";';
+    const depsWithTypes = detective(source);
+    const depsWithoutTypes = detective(source, {skipTypeImports: true});
+    assert.deepEqual(depsWithTypes, ['mylib']);
+    assert.deepEqual(depsWithoutTypes, []);
+  });
 });
