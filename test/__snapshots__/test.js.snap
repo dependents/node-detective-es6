@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`detective-es6 accepts an ast 1`] = `Array []`;
+
+exports[`detective-es6 handles default imports 1`] = `
+Array [
+  Object {
+    "default": "foo",
+    "name": "foo",
+  },
+]
+`;
+
+exports[`detective-es6 handles multiple imports 1`] = `
+Array [
+  Object {
+    "members": Array [
+      Object {
+        "alias": "Foo",
+        "name": "foo",
+      },
+      Object {
+        "alias": "bar",
+        "name": "bar",
+      },
+    ],
+    "name": "mylib",
+  },
+  Object {
+    "name": "mylib2",
+  },
+]
+`;
+
+exports[`detective-es6 retrieves the dependencies of es6 modules 1`] = `
+Array [
+  Object {
+    "alias": "All",
+    "default": "Abc",
+    "name": "mylib",
+    "star": true,
+  },
+]
+`;
+
+exports[`detective-es6 retrieves the re-export * dependencies of es6 modules 1`] = `
+Array [
+  Object {
+    "name": "mylib",
+  },
+]
+`;
+
+exports[`detective-es6 retrieves the re-export dependencies alias of es6 modules 1`] = `
+Array [
+  Object {
+    "members": Array [
+      Object {
+        "alias": "Foo",
+        "name": "foo",
+      },
+    ],
+    "name": "mylib",
+  },
+]
+`;
+
+exports[`detective-es6 retrieves the re-export dependencies of es6 modules 1`] = `
+Array [
+  Object {
+    "members": Array [
+      Object {
+        "alias": "foo",
+        "name": "foo",
+      },
+      Object {
+        "alias": "bar",
+        "name": "bar",
+      },
+    ],
+    "name": "mylib",
+  },
+]
+`;
+
+exports[`detective-es6 returns an empty list for non-es6 modules 1`] = `Array []`;

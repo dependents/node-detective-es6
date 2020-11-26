@@ -1,10 +1,10 @@
 {
   "name": "detective-module",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Get the dependencies specifier of an es6 module",
   "main": "index.js",
   "scripts": {
-    "test": "jscs -p google index.js test && mocha test/test.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,10 +26,9 @@
   },
   "homepage": "https://github.com/noyobo/node-detective-module",
   "dependencies": {
-    "node-source-walk": "^3.0.0"
+    "node-source-walk": "^4.2.0"
   },
   "devDependencies": {
-    "jscs": "~2.4.0",
-    "mocha": "~2.0.1"
+    "jest": "^26.6.3"
   }
 }
