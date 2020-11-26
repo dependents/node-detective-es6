@@ -64,6 +64,12 @@ describe("detective-es6", function () {
     expect(deps).toMatchSnapshot();
   });
 
+  it("support typescript", function () {
+    var deps = detective('import foo from "foo"; var a: string = "";');
+
+    expect(deps).toMatchSnapshot();
+  });
+
   it("returns an empty list for non-es6 modules", function () {
     var deps = detective('var foo = require("foo");');
     expect(deps).toMatchSnapshot();

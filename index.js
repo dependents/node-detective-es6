@@ -1,4 +1,4 @@
-var Walker = require('node-source-walk');
+var Walker = require("node-source-walk");
 
 /**
  * Extracts the dependencies of the supplied es6 module
@@ -6,16 +6,42 @@ var Walker = require('node-source-walk');
  * @param  {String|Object} src - File's content or AST
  * @return {String[]}
  */
-module.exports = function(src) {
-  var walker = new Walker();
+module.exports = function (src, options) {
+  var walker = new Walker(
+    Object.assign(
+      {
+        plugins: [
+          "jsx",
+          "typescript",
+          "doExpressions",
+          "objectRestSpread",
+          ["decorators", { decoratorsBeforeExport: true }],
+          "classProperties",
+          "exportDefaultFrom",
+          "exportNamespaceFrom",
+          "asyncGenerators",
+          "functionBind",
+          "functionSent",
+          "dynamicImport",
+          "optionalChaining",
+          "nullishCoalescingOperator",
+        ],
+        allowHashBang: true,
+        sourceType: "module",
+      },
+      options
+    )
+  );
 
   var dependencies = [];
 
-  if (!src) { throw new Error('src not given'); }
+  if (!src) {
+    throw new Error("src not given");
+  }
 
-  walker.walk(src, function(node) {
+  walker.walk(src, function (node) {
     switch (node.type) {
-      case 'ImportDeclaration':
+      case "ImportDeclaration":
         var dep = {};
         if (node.source && node.source.value) {
           var depName = node.source.value;
@@ -25,17 +51,17 @@ module.exports = function(src) {
           var specifiersNode = node.specifiers[i];
           var specifiersType = specifiersNode.type;
           switch (specifiersType) {
-            case 'ImportDefaultSpecifier':
+            case "ImportDefaultSpecifier":
               dep.default = specifiersNode.local.name;
               break;
-            case 'ImportSpecifier':
+            case "ImportSpecifier":
               dep.members = dep.members || [];
               dep.members.push({
                 name: specifiersNode.imported.name,
                 alias: specifiersNode.local.name,
               });
               break;
-            case 'ImportNamespaceSpecifier':
+            case "ImportNamespaceSpecifier":
               dep.star = true;
               dep.alias = specifiersNode.local.name;
               break;
@@ -45,7 +71,7 @@ module.exports = function(src) {
         }
         dependencies.push(dep);
         break;
-      case 'ExportNamedDeclaration':
+      case "ExportNamedDeclaration":
         var dep = {};
         if (node.source && node.source.value) {
           var depName = node.source.value;
@@ -55,7 +81,7 @@ module.exports = function(src) {
           var specifiersNode = node.specifiers[i];
           var specifiersType = specifiersNode.type;
           switch (specifiersType) {
-            case 'ExportSpecifier':
+            case "ExportSpecifier":
               dep.members = dep.members || [];
               dep.members.push({
                 name: specifiersNode.local.name,
@@ -68,10 +94,10 @@ module.exports = function(src) {
         }
         dependencies.push(dep);
         break;
-      case 'ExportAllDeclaration':
+      case "ExportAllDeclaration":
         if (node.source && node.source.value) {
           dependencies.push({
-            name: node.source.value
+            name: node.source.value,
           });
         }
         break;

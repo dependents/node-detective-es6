@@ -84,3 +84,12 @@ Array [
 `;
 
 exports[`detective-es6 returns an empty list for non-es6 modules 1`] = `Array []`;
+
+exports[`detective-es6 support typescript 1`] = `
+Array [
+  Object {
+    "default": "foo",
+    "name": "foo",
+  },
+]
+`;
