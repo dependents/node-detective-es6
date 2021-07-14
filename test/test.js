@@ -1,4 +1,4 @@
-var detective = require("../");
+var detective = require("../index.js");
 
 describe("detective-es6", function () {
   var ast = {
@@ -32,6 +32,11 @@ describe("detective-es6", function () {
 
   it("retrieves the dependencies of es6 modules", function () {
     var deps = detective('import Abc, * as All from "mylib";');
+    expect(deps).toMatchSnapshot();
+  });
+
+  it("impoet ImportNamespaceSpecifier the dependencies of es6 modules", function () {
+    var deps = detective('import Abc, {a, b, c as d}from "mylib";');
     expect(deps).toMatchSnapshot();
   });
 

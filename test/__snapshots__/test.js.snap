@@ -32,6 +32,29 @@ Array [
 ]
 `;
 
+exports[`detective-es6 impoet ImportNamespaceSpecifier the dependencies of es6 modules 1`] = `
+Array [
+  Object {
+    "default": "Abc",
+    "members": Array [
+      Object {
+        "alias": "a",
+        "name": "a",
+      },
+      Object {
+        "alias": "b",
+        "name": "b",
+      },
+      Object {
+        "alias": "d",
+        "name": "c",
+      },
+    ],
+    "name": "mylib",
+  },
+]
+`;
+
 exports[`detective-es6 retrieves the dependencies of es6 modules 1`] = `
 Array [
   Object {

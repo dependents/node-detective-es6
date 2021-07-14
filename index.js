@@ -6,7 +6,7 @@ var Walker = require("node-source-walk");
  * @param  {String|Object} src - File's content or AST
  * @return {String[]}
  */
-module.exports = function (src, options) {
+module.exports = function detectiveModule(src, options) {
   var walker = new Walker(
     Object.assign(
       {
@@ -44,8 +44,7 @@ module.exports = function (src, options) {
       case "ImportDeclaration":
         var dep = {};
         if (node.source && node.source.value) {
-          var depName = node.source.value;
-          dep.name = depName;
+          dep.name = node.source.value;
         }
         for (var i = 0; i < node.specifiers.length; i++) {
           var specifiersNode = node.specifiers[i];
