@@ -35,11 +35,11 @@ module.exports = function detectiveModule(code, options) {
 
   var dependencies = [];
 
-  if (!src) {
+  if (!code) {
     throw new Error("src not given");
   }
 
-  walker.walk(src, function (node) {
+  walker.walk(code, function (node) {
     switch (node.type) {
       case "ImportDeclaration":
         var dep = {};
