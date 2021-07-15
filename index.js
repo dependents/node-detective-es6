@@ -2,11 +2,11 @@ var Walker = require("node-source-walk");
 
 /**
  * Extracts the dependencies of the supplied es6 module
- *
- * @param  {String|Object} src - File's content or AST
- * @return {String[]}
+ * @param code
+ * @param options
+ * @return {*[]}
  */
-module.exports = function detectiveModule(src, options) {
+module.exports = function detectiveModule(code, options) {
   var walker = new Walker(
     Object.assign(
       {
@@ -73,8 +73,8 @@ module.exports = function detectiveModule(src, options) {
       case "ExportNamedDeclaration":
         var dep = {};
         if (node.source && node.source.value) {
-          var depName = node.source.value;
-          dep.name = depName;
+          dep.name = node.source.value;
+          dependencies.push(dep);
         }
         for (var i = 0; i < node.specifiers.length; i++) {
           var specifiersNode = node.specifiers[i];
@@ -91,7 +91,6 @@ module.exports = function detectiveModule(src, options) {
               return;
           }
         }
-        dependencies.push(dep);
         break;
       case "ExportAllDeclaration":
         if (node.source && node.source.value) {

@@ -93,4 +93,33 @@ describe("detective-es6", function () {
       );
     }).not.toThrow();
   });
+
+  it("case1", function() {
+    expect(detective(`import React, { Component } from 'react';
+
+import {fetchUser} from '@/service/user';
+
+export default class Home extends Component {
+    static pageConfig = { fixedIcon: { backHome: false } };
+    componentDidMount () {
+        console.log('===== auth ======');
+        WPT.setTitle(' ');
+        fetchUser();
+    }
+
+    render() {
+        return (
+            <div></div>
+        );
+    }
+}
+`)).toMatchSnapshot()
+  })
+
+  it('case2', function() {
+    expect(detective(`import Cookies from 'js-cookie';
+export function saveUserToken () {
+}
+`)).toMatchSnapshot()
+  })
 });

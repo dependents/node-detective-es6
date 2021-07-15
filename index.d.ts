@@ -22,11 +22,11 @@ type ModuleSpecs = NamespaceSpec | DefaultSpec | ImportSpecifier;
 
 /**
  * Extracts the dependencies of the supplied es6 module
- * @param path file path or babel ast object
+ * @param code code context or babel ast object
  * @param options
  */
 declare function detectiveModule(
-  path: string | object,
+  code: string | object,
   options?: ParserOptions
 ): ModuleSpecs[];
 export default detectiveModule;

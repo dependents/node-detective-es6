@@ -2,6 +2,39 @@
 
 exports[`detective-es6 accepts an ast 1`] = `Array []`;
 
+exports[`detective-es6 case1 1`] = `
+Array [
+  Object {
+    "default": "React",
+    "members": Array [
+      Object {
+        "alias": "Component",
+        "name": "Component",
+      },
+    ],
+    "name": "react",
+  },
+  Object {
+    "members": Array [
+      Object {
+        "alias": "fetchUser",
+        "name": "fetchUser",
+      },
+    ],
+    "name": "@/service/user",
+  },
+]
+`;
+
+exports[`detective-es6 case2 1`] = `
+Array [
+  Object {
+    "default": "Cookies",
+    "name": "js-cookie",
+  },
+]
+`;
+
 exports[`detective-es6 handles default imports 1`] = `
 Array [
   Object {
