@@ -1,6 +1,6 @@
 {
   "name": "detective-module",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Get the dependencies specifier of an es6 module",
   "main": "index.js",
   "types": "index.d.ts",
