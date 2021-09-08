@@ -25,7 +25,7 @@ type ModuleSpecs = NamespaceSpec | DefaultSpec | ImportSpecifier;
  * @param code code context or babel ast object
  * @param options
  */
-function detectiveModule(
+declare function detectiveModule(
   code: string | object,
   options?: ParserOptions
 ): ModuleSpecs[];
