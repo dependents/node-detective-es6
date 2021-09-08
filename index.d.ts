@@ -25,14 +25,15 @@ type ModuleSpecs = NamespaceSpec | DefaultSpec | ImportSpecifier;
  * @param code code context or babel ast object
  * @param options
  */
-declare function detectiveModule(
+function detectiveModule(
   code: string | object,
   options?: ParserOptions
 ): ModuleSpecs[];
-export default detectiveModule;
 
 export declare function detectiveModuleAndRequire(
   code: string | object,
   options?: ParserOptions
 ): ModuleSpecs[];
+
 export default detectiveModule;
+export { detectiveModule };
