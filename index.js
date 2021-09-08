@@ -1,4 +1,5 @@
 var Walker = require("node-source-walk");
+var t = require("@babel/types");
 
 /**
  * Extracts the dependencies of the supplied es6 module
@@ -6,7 +7,7 @@ var Walker = require("node-source-walk");
  * @param options
  * @return {*[]}
  */
-module.exports = function detectiveModule(code, options) {
+function detectiveFactory(code, options, cjs = false) {
   var walker = new Walker(
     Object.assign(
       {
@@ -99,10 +100,46 @@ module.exports = function detectiveModule(code, options) {
           });
         }
         break;
+
+      case "CallExpression":
+        var dep = {};
+        if (cjs && node.callee.name === "require") {
+          var args = node.arguments;
+          dep.name = args[0].value;
+          var id = node.parent.id;
+          if (t.isIdentifier(id)) {
+            dep.default = id.name;
+          } else if (t.isObjectPattern(id)) {
+            dep.members = dep.members || [];
+            var properties = id.properties;
+            properties.forEach(function (property) {
+              var name = property.key.name;
+              var alias = property.value.name;
+              dep.members.push({ name, alias });
+            });
+          }
+          dependencies.push(dep);
+        }
+
       default:
         return;
     }
   });
 
   return dependencies;
+}
+
+function detectiveModule(code, options) {
+  return detectiveFactory(code, options);
+}
+
+module.exports = detectiveModule;
+
+module.exports.detectiveModule = detectiveModule;
+
+module.exports.detectiveModuleAndRequire = function detectiveModuleAndRequire(
+  code,
+  options
+) {
+  return detectiveFactory(code, options, true);
 };

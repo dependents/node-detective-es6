@@ -30,3 +30,9 @@ declare function detectiveModule(
   options?: ParserOptions
 ): ModuleSpecs[];
 export default detectiveModule;
+
+export declare function detectiveModuleAndRequire(
+  code: string | object,
+  options?: ParserOptions
+): ModuleSpecs[];
+export default detectiveModule;
