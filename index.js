@@ -40,7 +40,8 @@ module.exports = function(src, options) {
         if (options && options.skipAsyncImports) {
           break;
         }
-        if (node.callee.type === 'Import' && node.arguments.length) {
+        if (node.callee.type === 'Import' && node.arguments.length &&
+          node.arguments[0].value) {
           dependencies.push(node.arguments[0].value);
         }
       default:

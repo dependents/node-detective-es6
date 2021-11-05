@@ -3,7 +3,7 @@
 const assert = require('assert');
 const detective = require('../');
 
-describe('detective-es6', function() {
+describe('detective-es6', function () {
   const ast = {
     type: 'Program',
     body: [{
@@ -11,43 +11,43 @@ describe('detective-es6', function() {
       declarations: [{
         type: 'VariableDeclarator',
         id: {
-            type: 'Identifier',
-            name: 'x'
+          type: 'Identifier',
+          name: 'x'
         },
         init: {
-            type: 'Literal',
-            value: 4,
-            raw: '4'
+          type: 'Literal',
+          value: 4,
+          raw: '4'
         }
       }],
       kind: 'let'
     }]
   };
 
-  it('accepts an ast', function() {
+  it('accepts an ast', function () {
     const deps = detective(ast);
     assert(!deps.length);
   });
 
-  it('retrieves the dependencies of es6 modules', function() {
+  it('retrieves the dependencies of es6 modules', function () {
     const deps = detective('import {foo, bar} from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
-  it('retrieves the re-export dependencies of es6 modules', function() {
+  it('retrieves the re-export dependencies of es6 modules', function () {
     const deps = detective('export {foo, bar} from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
-  it('retrieves the re-export * dependencies of es6 modules', function() {
+  it('retrieves the re-export * dependencies of es6 modules', function () {
     const deps = detective('export * from "mylib";');
     assert(deps.length === 1);
     assert(deps[0] === 'mylib');
   });
 
-  it('handles multiple imports', function() {
+  it('handles multiple imports', function () {
     const deps = detective('import {foo, bar} from "mylib";\nimport "mylib2"');
 
     assert(deps.length === 2);
@@ -55,67 +55,72 @@ describe('detective-es6', function() {
     assert(deps[1] === 'mylib2');
   });
 
-  it('handles default imports', function() {
+  it('handles default imports', function () {
     const deps = detective('import foo from "foo";');
 
     assert(deps.length === 1);
     assert(deps[0] === 'foo');
   });
 
-  it('handles dynamic imports', function() {
+  it('handles dynamic imports', function () {
     const deps = detective('import("foo").then(foo => foo());');
 
     assert(deps.length === 1);
     assert(deps[0] === 'foo');
   })
 
-  it('returns an empty list for non-es6 modules', function() {
+  it('returns an empty list for non-es6 modules', function () {
     const deps = detective('var foo = require("foo");');
     assert(!deps.length);
   });
 
-  it('returns an empty list for empty files', function() {
+  it('returns an empty list for empty files', function () {
     const deps = detective('');
     assert.equal(deps.length, 0);
   });
 
-  it('throws when content is not provided', function() {
-    assert.throws(function() {
+  it('throws when content is not provided', function () {
+    assert.throws(function () {
       detective();
     }, Error, 'src not given');
   });
 
-  it('does not throw with jsx in a module', function() {
-    assert.doesNotThrow(function() {
+  it('does not throw with jsx in a module', function () {
+    assert.doesNotThrow(function () {
       detective('import foo from \'foo\'; var templ = <jsx />;');
     });
   });
 
-  it('does not throw on an async ES7 function', function() {
-    assert.doesNotThrow(function() {
-      detective('import foo from \'foo\'; export default async function foo() {}');
+  it('does not throw on an async ES7 function', function () {
+    assert.doesNotThrow(function () {
+      detective('import foo from \'foo\'; export default async function baz() {}');
     });
   });
 
-  it('respects settings for type imports', function() {
+  it('respects settings for type imports', function () {
     const source = 'import type {foo} from "mylib";';
     const depsWithTypes = detective(source);
-    const depsWithoutTypes = detective(source, {skipTypeImports: true});
+    const depsWithoutTypes = detective(source, { skipTypeImports: true });
     assert.deepEqual(depsWithTypes, ['mylib']);
     assert.deepEqual(depsWithoutTypes, []);
   });
 
-  it('respects settings for async imports', function() {
+  it('respects settings for async imports', function () {
     const source = 'import("myLib")';
     const depsWithAsync = detective(source);
-    const depsWithoutAsync = detective(source, {skipAsyncImports: true});
+    const depsWithoutAsync = detective(source, { skipAsyncImports: true });
     assert.deepEqual(depsWithAsync, ['myLib']);
     assert.deepEqual(depsWithoutAsync, []);
   });
 
-  it('respects settings for async imports with multiple imports', function() {
+  it('respects settings for async imports with multiple imports', function () {
     const source = 'import("myLib");\nimport foo from \'foo\'';
-    const depsWithoutAsync = detective(source, {skipAsyncImports: true});
+    const depsWithoutAsync = detective(source, { skipAsyncImports: true });
     assert.deepEqual(depsWithoutAsync, ['foo']);
+  });
+
+  it("skips variable imports", function () {
+    const deps = detective('var baz = "bar"; import(baz);');
+    assert.equal(deps.length, 0);
   });
 });
