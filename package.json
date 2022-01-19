@@ -3,12 +3,15 @@
   "version": "2.2.1",
   "description": "Get the dependencies of an es6 module",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "jscs -p google index.js test && mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrjoelkemp/node-detective-es6.git"
+    "url": "https://github.com/dependents/node-detective-es6.git"
   },
   "keywords": [
     "detective",
@@ -22,9 +25,9 @@
   "author": "Joel Kemp <joel@mrjoelkemp.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrjoelkemp/node-detective-es6/issues"
+    "url": "https://github.com/dependents/node-detective-es6/issues"
   },
-  "homepage": "https://github.com/mrjoelkemp/node-detective-es6",
+  "homepage": "https://github.com/dependents/node-detective-es6",
   "engines": {
     "node": ">= 6.0"
   },
