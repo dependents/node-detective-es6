@@ -1,6 +1,6 @@
 'use strict';
 
-var Walker = require('node-source-walk');
+const Walker = require('node-source-walk');
 
 /**
  * Extracts the dependencies of the supplied es6 module
@@ -10,42 +10,45 @@ var Walker = require('node-source-walk');
  * @return {String[]}
  */
 module.exports = function(src, options) {
-  const walker = new Walker();
-
   const dependencies = [];
 
-  if (typeof src === 'undefined') { throw new Error('src not given'); }
+  if (typeof src === 'undefined') throw new Error('src not given');
+  if (src === '') return dependencies;
 
-  if (src === '') {
-    return dependencies;
-  }
+  const walker = new Walker();
 
-  walker.walk(src, function(node) {
+  walker.walk(src, (node) => {
     switch (node.type) {
       case 'ImportDeclaration':
-        if (options && options.skipTypeImports && node.importKind == 'type') {
+        if (options && options.skipTypeImports && node.importKind === 'type') {
           break;
         }
+
         if (node.source && node.source.value) {
           dependencies.push(node.source.value);
         }
+
         break;
       case 'ExportNamedDeclaration':
       case 'ExportAllDeclaration':
         if (node.source && node.source.value) {
           dependencies.push(node.source.value);
         }
+
         break;
       case 'CallExpression':
         if (options && options.skipAsyncImports) {
           break;
         }
-        if (node.callee.type === 'Import' && node.arguments.length &&
-          node.arguments[0].value) {
+
+        if (node.callee.type === 'Import' && node.arguments.length > 0 &&
+            node.arguments[0].value) {
           dependencies.push(node.arguments[0].value);
         }
+
+        break;
       default:
-        return;
+        // nothing
     }
   });
 
