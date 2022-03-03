@@ -2,7 +2,7 @@
 
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const detective = require('../index.js');
 
 const ast = {
