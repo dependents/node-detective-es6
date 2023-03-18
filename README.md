@@ -1,4 +1,4 @@
-### detective-es6 [![CI](https://img.shields.io/github/workflow/status/dependents/node-detective-es6/CI/main?label=CI&logo=github)](https://github.com/dependents/node-detective-es6/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-es6)](https://www.npmjs.com/package/detective-es6) [![npm](https://img.shields.io/npm/dm/detective-es6)](https://www.npmjs.com/package/detective-es6)
+### detective-es6 [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-es6/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-es6/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-es6)](https://www.npmjs.com/package/detective-es6) [![npm](https://img.shields.io/npm/dm/detective-es6)](https://www.npmjs.com/package/detective-es6)
 
 > Get the dependencies of an ES6 module
 
