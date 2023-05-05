@@ -10,16 +10,15 @@ const Walker = require('node-source-walk');
  * @return {String[]}
  */
 module.exports = function(src, options) {
-  const dependencies = [];
-
-  if (typeof src === 'undefined') throw new Error('src not given');
-  if (src === '') return dependencies;
+  if (src === undefined) throw new Error('src not given');
+  if (src === '') return [];
 
   const walker = new Walker();
+  const dependencies = [];
 
-  walker.walk(src, (node) => {
+  walker.walk(src, node => {
     switch (node.type) {
-      case 'ImportDeclaration':
+      case 'ImportDeclaration': {
         if (options && options.skipTypeImports && node.importKind === 'type') {
           break;
         }
@@ -29,14 +28,18 @@ module.exports = function(src, options) {
         }
 
         break;
+      }
+
       case 'ExportNamedDeclaration':
-      case 'ExportAllDeclaration':
+      case 'ExportAllDeclaration': {
         if (node.source && node.source.value) {
           dependencies.push(node.source.value);
         }
 
         break;
-      case 'CallExpression':
+      }
+
+      case 'CallExpression': {
         if (options && options.skipAsyncImports) {
           break;
         }
@@ -47,6 +50,8 @@ module.exports = function(src, options) {
         }
 
         break;
+      }
+
       default:
         // nothing
     }

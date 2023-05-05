@@ -1,4 +1,8 @@
-### detective-es6 [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-es6/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-es6/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-es6)](https://www.npmjs.com/package/detective-es6) [![npm](https://img.shields.io/npm/dm/detective-es6)](https://www.npmjs.com/package/detective-es6)
+# detective-es6
+
+[![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-es6/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-es6/actions/workflows/ci.yml?query=branch%3Amain)
+[![npm version](https://img.shields.io/npm/v/detective-es6)](https://www.npmjs.com/package/detective-es6)
+[![npm downloads](https://img.shields.io/npm/dm/detective-es6)](https://www.npmjs.com/package/detective-es6)
 
 > Get the dependencies of an ES6 module
 
@@ -6,7 +10,7 @@
 npm install detective-es6
 ```
 
-### Usage
+## Usage
 
 ```js
 const fs = require('fs');
@@ -25,6 +29,6 @@ You may also (optionally) configure the detective via a second object argument d
 - `skipTypeImports`: (Boolean) whether or not to omit type imports (`import type {foo} from "mylib";`) in the list of extracted dependencies.
 - `skipAsyncImports`: (Boolean) whether or not to omit async imports (`import('foo')`) in the list of extracted dependencies.
 
-#### License
+## License
 
-MIT
+[MIT](LICENSE)
