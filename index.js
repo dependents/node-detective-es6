@@ -9,7 +9,7 @@ const Walker = require('node-source-walk');
  * @param  {Object} options - optional extra settings
  * @return {String[]}
  */
-module.exports = function(src, options) {
+module.exports = function(src, options = {}) {
   if (src === undefined) throw new Error('src not given');
   if (src === '') return [];
 
@@ -19,7 +19,7 @@ module.exports = function(src, options) {
   walker.walk(src, node => {
     switch (node.type) {
       case 'ImportDeclaration': {
-        if (options && options.skipTypeImports && node.importKind === 'type') {
+        if (options.skipTypeImports && node.importKind === 'type') {
           break;
         }
 
@@ -40,7 +40,7 @@ module.exports = function(src, options) {
       }
 
       case 'CallExpression': {
-        if (options && options.skipAsyncImports) {
+        if (options.skipAsyncImports) {
           break;
         }
 
