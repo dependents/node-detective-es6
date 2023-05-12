@@ -36,7 +36,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "node-source-walk": "^6.0.0"
+    "node-source-walk": "^6.0.1"
   },
   "devDependencies": {
     "c8": "^7.13.0",
