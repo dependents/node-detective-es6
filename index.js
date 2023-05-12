@@ -23,7 +23,7 @@ module.exports = function(src, options = {}) {
           break;
         }
 
-        if (node.source && node.source.value) {
+        if (node.source?.value) {
           dependencies.push(node.source.value);
         }
 
@@ -32,7 +32,7 @@ module.exports = function(src, options = {}) {
 
       case 'ExportNamedDeclaration':
       case 'ExportAllDeclaration': {
-        if (node.source && node.source.value) {
+        if (node.source?.value) {
           dependencies.push(node.source.value);
         }
 
@@ -44,9 +44,8 @@ module.exports = function(src, options = {}) {
           break;
         }
 
-        if (node.callee.type === 'Import' && node.arguments.length > 0 &&
-            node.arguments[0].value) {
-          dependencies.push(node.arguments[0].value);
+        if (node.callee.type === 'Import' && node.arguments?.[0].value) {
+          dependencies.push(node.arguments?.[0].value);
         }
 
         break;
