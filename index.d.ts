@@ -18,7 +18,7 @@ interface ImportSpecifier {
   name: string;
 }
 
-type ModuleSpecs = NamespaceSpec | DefaultSpec | ImportSpecifier;
+export type ModuleSpecs = NamespaceSpec | DefaultSpec | ImportSpecifier;
 
 /**
  * Extracts the dependencies of the supplied es6 module

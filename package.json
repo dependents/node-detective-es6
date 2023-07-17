@@ -7,6 +7,10 @@
   "scripts": {
     "test": "jest"
   },
+  files: [
+    "index.js",
+    "index.d.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/noyobo/node-detective-module.git"
