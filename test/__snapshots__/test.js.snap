@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`detective-es6 accepts an ast 1`] = `Array []`;
+exports[`detective-es6 accepts an ast 1`] = `[]`;
 
 exports[`detective-es6 case1 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "React",
-    "members": Array [
-      Object {
+    "members": [
+      {
         "alias": "Component",
         "name": "Component",
       },
     ],
     "name": "react",
   },
-  Object {
-    "members": Array [
-      Object {
+  {
+    "members": [
+      {
         "alias": "fetchUser",
         "name": "fetchUser",
       },
@@ -27,8 +27,8 @@ Array [
 `;
 
 exports[`detective-es6 case2 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "Cookies",
     "name": "js-cookie",
   },
@@ -36,8 +36,8 @@ Array [
 `;
 
 exports[`detective-es6 handles default imports 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "foo",
     "name": "foo",
   },
@@ -45,40 +45,40 @@ Array [
 `;
 
 exports[`detective-es6 handles multiple imports 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "Foo",
         "name": "foo",
       },
-      Object {
+      {
         "alias": "bar",
         "name": "bar",
       },
     ],
     "name": "mylib",
   },
-  Object {
+  {
     "name": "mylib2",
   },
 ]
 `;
 
 exports[`detective-es6 impoet ImportNamespaceSpecifier the dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "Abc",
-    "members": Array [
-      Object {
+    "members": [
+      {
         "alias": "a",
         "name": "a",
       },
-      Object {
+      {
         "alias": "b",
         "name": "b",
       },
-      Object {
+      {
         "alias": "d",
         "name": "c",
       },
@@ -89,8 +89,8 @@ Array [
 `;
 
 exports[`detective-es6 retrieves the dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "alias": "All",
     "default": "Abc",
     "name": "mylib",
@@ -100,18 +100,18 @@ Array [
 `;
 
 exports[`detective-es6 retrieves the re-export * dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "name": "mylib",
   },
 ]
 `;
 
 exports[`detective-es6 retrieves the re-export dependencies alias of es6 modules 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "Foo",
         "name": "foo",
       },
@@ -122,14 +122,14 @@ Array [
 `;
 
 exports[`detective-es6 retrieves the re-export dependencies of es6 modules 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "foo",
         "name": "foo",
       },
-      Object {
+      {
         "alias": "bar",
         "name": "bar",
       },
@@ -139,34 +139,34 @@ Array [
 ]
 `;
 
-exports[`detective-es6 returns an empty list for non-es6 modules 1`] = `Array []`;
+exports[`detective-es6 returns an empty list for non-es6 modules 1`] = `[]`;
 
 exports[`detective-es6 support typescript 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "foo",
     "name": "foo",
   },
 ]
 `;
 
-exports[`detective-module-and-require accepts an ast 1`] = `Array []`;
+exports[`detective-module-and-require accepts an ast 1`] = `[]`;
 
 exports[`detective-module-and-require case1 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "React",
-    "members": Array [
-      Object {
+    "members": [
+      {
         "alias": "Component",
         "name": "Component",
       },
     ],
     "name": "react",
   },
-  Object {
-    "members": Array [
-      Object {
+  {
+    "members": [
+      {
         "alias": "fetchUser",
         "name": "fetchUser",
       },
@@ -177,8 +177,8 @@ Array [
 `;
 
 exports[`detective-module-and-require case2 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "Cookies",
     "name": "js-cookie",
   },
@@ -186,8 +186,8 @@ Array [
 `;
 
 exports[`detective-module-and-require handles default imports 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "foo",
     "name": "foo",
   },
@@ -195,40 +195,40 @@ Array [
 `;
 
 exports[`detective-module-and-require handles multiple imports 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "Foo",
         "name": "foo",
       },
-      Object {
+      {
         "alias": "bar",
         "name": "bar",
       },
     ],
     "name": "mylib",
   },
-  Object {
+  {
     "name": "mylib2",
   },
 ]
 `;
 
 exports[`detective-module-and-require impoet ImportNamespaceSpecifier the dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "Abc",
-    "members": Array [
-      Object {
+    "members": [
+      {
         "alias": "a",
         "name": "a",
       },
-      Object {
+      {
         "alias": "b",
         "name": "b",
       },
-      Object {
+      {
         "alias": "d",
         "name": "c",
       },
@@ -239,8 +239,8 @@ Array [
 `;
 
 exports[`detective-module-and-require retrieves the dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "alias": "All",
     "default": "Abc",
     "name": "mylib",
@@ -250,18 +250,18 @@ Array [
 `;
 
 exports[`detective-module-and-require retrieves the re-export * dependencies of es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "name": "mylib",
   },
 ]
 `;
 
 exports[`detective-module-and-require retrieves the re-export dependencies alias of es6 modules 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "Foo",
         "name": "foo",
       },
@@ -272,14 +272,14 @@ Array [
 `;
 
 exports[`detective-module-and-require retrieves the re-export dependencies of es6 modules 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "foo",
         "name": "foo",
       },
-      Object {
+      {
         "alias": "bar",
         "name": "bar",
       },
@@ -290,18 +290,18 @@ Array [
 `;
 
 exports[`detective-module-and-require support non-es6 exports 1`] = `
-Array [
-  Object {
-    "members": Array [
-      Object {
+[
+  {
+    "members": [
+      {
         "alias": "foo",
         "name": "default",
       },
-      Object {
+      {
         "alias": "a",
         "name": "a",
       },
-      Object {
+      {
         "alias": "c",
         "name": "b",
       },
@@ -312,8 +312,8 @@ Array [
 `;
 
 exports[`detective-module-and-require support non-es6 modules 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "bar",
     "name": "foo",
   },
@@ -321,8 +321,8 @@ Array [
 `;
 
 exports[`detective-module-and-require support typescript 1`] = `
-Array [
-  Object {
+[
+  {
     "default": "foo",
     "name": "foo",
   },
