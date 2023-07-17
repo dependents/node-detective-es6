@@ -28,7 +28,7 @@
   "homepage": "https://github.com/noyobo/node-detective-module",
   "dependencies": {
     "@babel/types": "^7.15.4",
-    "node-source-walk": "^4.2.0"
+    "node-source-walk": "^6.0.2"
   },
   "devDependencies": {
     "@babel/parser": "^7.14.7",
