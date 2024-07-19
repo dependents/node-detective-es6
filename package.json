@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest"
   },
-  files: [
+  "files": [
     "index.js",
     "index.d.ts"
   ],
