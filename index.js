@@ -44,8 +44,9 @@ module.exports = function(src, options = {}) {
           break;
         }
 
-        if (node.callee.type === 'Import' && node.arguments?.[0].value) {
-          dependencies.push(node.arguments?.[0].value);
+        const importArg = node.arguments?.[0];
+        if (node.callee.type === 'Import' && importArg?.value) {
+          dependencies.push(importArg.value);
         }
 
         break;
