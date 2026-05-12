@@ -2,7 +2,10 @@
   "name": "detective-es6",
   "version": "5.0.2",
   "description": "Get the dependencies of an ES6 module",
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
   "files": [
     "index.js"
   ],
@@ -33,7 +36,7 @@
   },
   "homepage": "https://github.com/dependents/node-detective-es6",
   "engines": {
-    "node": ">=20"
+    "node": ">=20.19.0 || >=22.12.0"
   },
   "dependencies": {
     "node-source-walk": "^8.0.0"

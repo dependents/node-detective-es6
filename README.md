@@ -12,14 +12,22 @@ npm install detective-es6
 
 ## Usage
 
+### ESM
+
 ```js
-const fs = require('fs');
-const detective = require('detective-es6');
+import fs from 'node:fs';
+import detective from 'detective-es6';
 
 const mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 
 // Pass in a file's content or an AST
 const dependencies = detective(mySourceCode);
+```
+
+### CommonJS
+
+```js
+const { default: detective } = require('detective-es6');
 ```
 
 * Supports JSX, Flow, and any other features that [node-source-walk](https://github.com/dependents/node-source-walk) supports.

@@ -1,6 +1,4 @@
-'use strict';
-
-const Walker = require('node-source-walk');
+import Walker from 'node-source-walk';
 
 /**
  * Extracts the dependencies of the supplied es6 module
@@ -9,7 +7,7 @@ const Walker = require('node-source-walk');
  * @param  {Object} options - optional extra settings
  * @return {String[]}
  */
-module.exports = function(src, options = {}) {
+export default function detective(src, options = {}) {
   if (src === undefined) throw new Error('src not given');
   if (src === '') return [];
 
@@ -58,4 +56,4 @@ module.exports = function(src, options = {}) {
   });
 
   return dependencies;
-};
+}
