@@ -26,24 +26,24 @@ const ast = {
 
 const test = suite('detective-es6');
 
-test('accepts an ast', () => {
+test('accepts an AST', () => {
   const deps = detective(ast);
   assert.equal(deps.length, 0);
 });
 
-test('retrieves the dependencies of es6 modules', () => {
+test('retrieves the dependencies of ES6 modules', () => {
   const deps = detective('import {foo, bar} from "mylib";');
   assert.equal(deps.length, 1);
   assert.equal(deps[0], 'mylib');
 });
 
-test('retrieves the re-export dependencies of es6 modules', () => {
+test('retrieves the re-export dependencies of ES6 modules', () => {
   const deps = detective('export {foo, bar} from "mylib";');
   assert.equal(deps.length, 1);
   assert.equal(deps[0], 'mylib');
 });
 
-test('retrieves the re-export * dependencies of es6 modules', () => {
+test('retrieves the re-export * dependencies of ES6 modules', () => {
   const deps = detective('export * from "mylib";');
   assert.equal(deps.length, 1);
   assert.equal(deps[0], 'mylib');
@@ -68,7 +68,7 @@ test('handles dynamic imports', () => {
   assert.equal(deps[0], 'foo');
 });
 
-test('returns an empty list for non-es6 modules', () => {
+test('returns an empty list for non-ES6 modules', () => {
   const deps = detective('var foo = require("foo");');
   assert.equal(deps.length, 0);
 });
@@ -84,13 +84,13 @@ test('throws when content is not provided', () => {
   }, /^Error: src not given$/);
 });
 
-test('does not throw with jsx in a module', () => {
+test('does not throw with JSX in a module', () => {
   assert.doesNotThrow(() => {
     detective('import foo from "foo"; var templ = <jsx />;');
   });
 });
 
-test('does not throw on an async ES7 function', () => {
+test('does not throw on ES7 async functions', () => {
   assert.doesNotThrow(() => {
     detective('import foo from "foo"; export default async function baz() {}');
   });
